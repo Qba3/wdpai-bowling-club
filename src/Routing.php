@@ -1,18 +1,28 @@
 <?php
 
 require_once 'src/controller/MainController.php';
+require_once 'src/controller/SecurityController.php';
 
-class Routing {
+class Routing
+{
     public static $routes;
 
-    public static function get($url, $controller) {
+    public static function get($url, $controller)
+    {
         self::$routes[$url] = $controller;
     }
 
-    public static function run($url) {
+    public static function post($url, $controller)
+    {
+        self::$routes[$url] = $controller;
+    }
+
+
+    public static function run($url)
+    {
         $action = explode("/", $url)[0];
 
-        if(!array_key_exists($action, self::$routes)) {
+        if (!array_key_exists($action, self::$routes)) {
             die("Wrong Url");
             //TODO: add page 404
         }
