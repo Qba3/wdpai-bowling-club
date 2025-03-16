@@ -5,21 +5,24 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
 </head>
 
 <body>
-<h1>Login</h1>
-<a href="/main">main</a>
-<form action="/src/service/security/Login.php" method="post">
-    <div class="messages">
-        <h1><?php echo $message; ?></h1>
-    </div>
-    <label for="login"> Login: </label><br>
-    <input id="login" name="login" type="text"><br>
-    <label for="password"> Password: </label><br>
-    <input id="password" name="password" type="text"><br>
-    <button type="submit"> Log in!</button>
-</form>
+    <h1>Login</h1>
+    <a href="/main">main</a>
+    <form action="/src/service/security/Login.php" method="post">
+        <div class="messages">
+            <h5>
+                <?php echo $message; ?>
+            </h5>
+        </div>
+        <label for="login"> Login: </label><br>
+        <input id="login" name="login" type="text"><br>
+        <label for="password"> Password: </label><br>
+        <input id="password" name="password" type="text"><br>
+        <button type="submit"> Log in!</button>
+    </form>
 </body>
 
 </html>
