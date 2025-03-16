@@ -2,11 +2,11 @@
 
 class Controller
 {
-    protected function render(string $template = null, array $messages = [])
+    protected function render(string $template = null, array $messages = []): void
     {
-        $templatePath = 'public/view/' . $template . '.php';
-        $output = "File not found";
 
+        $templatePath = __DIR__ . '/../../public/view/' . $template . '.html';
+        $output = "File not found";
 
         if (file_exists($templatePath)) {
             extract($messages);

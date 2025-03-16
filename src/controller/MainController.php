@@ -9,9 +9,4 @@ class MainController extends Controller
     {
         $this->render('main');
     }
-
-    public function login()
-    {
-        $this->render('login');
-    }
 }
