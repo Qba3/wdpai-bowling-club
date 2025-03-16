@@ -37,9 +37,8 @@ class DI
             );
 
             self::$PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected to DB";
         } catch (PDOException $e) {
-            echo "Error while connecting the DB: " . $e->getMessage();
+            die("Error while connecting the DB: " . $e->getMessage());
         }
         $this->userRepository = new UserRepository(self::$PDO);
         $this->userService = new UserService($this->userRepository);
