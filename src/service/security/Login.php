@@ -1,20 +1,22 @@
 <?php
 
+
 require '../../controller/SecurityController.php';
+require '../../../di_config.php';
 
 $login = $_POST["login"] ?? null;
 $password = $_POST["password"] ?? null;
 
-$object = new SecurityController();
+$di = DI::getInstance();
 
 if ($login == null) {
-    $object->login("Login must not be empty");
+    $di->securityController->login("Login must not be empty");
     return;
 }
 
 if ($password == null) {
-    $object->login("Password must not be empty");
+    $di->securityController->login("Password must not be empty");
     return;
 }
 
-$object->verify();
+$di->securityController->verify($login, $password);

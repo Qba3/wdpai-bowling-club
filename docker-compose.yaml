@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     ports:
-      - "8080:80"
+      - "3000:80"
     volumes:
       - .:/app/
     links:
@@ -17,14 +17,31 @@ services:
       - php
 
   db:
+    image: postgres
     build:
       context: .
       dockerfile: docker/db/Dockerfile
+    restart: always
+    shm_size: 128mb
     ports:
       - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: bowling_club
+      POSTGRES_USER: admin
+    volumes:
+      - ./app/database:/app/database
     networks:
       - pg-network
-  
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - pg-network
+
   php:
     build:
       context: .
