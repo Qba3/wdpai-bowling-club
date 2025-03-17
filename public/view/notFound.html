@@ -4,14 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="icon" href="/public/image/favicon.ico" type="image/x-icon">
+    <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <title>Bowling</title>
 </head>
 
 <body>
-    <h1>NotFound</h1>
-    <a href="/main">main</a>
-    <a href="/login">Login</a>
+    <div class="container">
+        <header>
+            <div>
+                <h2>
+                    <?php
+                if (isset($_SESSION['user_id'])) {
+                    echo "Welcome " . $_SESSION['username'] . "!";
+                } else {
+                    echo "User not singed in";
+                };
+            ?>
+
+                </h2>
+            </div>
+            <div id="logoutDiv">
+                <h2>
+                    <a href="/logout">Log out</a>
+                </h2>
+            </div>
+        </header>
+        <div id="columns">
+            <div id="leftColumn" class="column">
+                <h3>Error 404</h3>
+                <h3>Page not found</h3>
+            </div>
+            <div id="rightColumn" class="column">
+                <?php
+                                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+                                        echo "<a href='/admin'>
+                    <div class='menuDecorator'><img src='/public/image/admin.svg'></div>Admin
+                </a>";
+                                    } 
+                                ?>
+
+                <a href="/main">
+                    <div class="menuDecorator"><img src="/public/image/schedule.svg"></div>Schedule
+                </a>
+                <a href="/gallery">
+                    <div class="menuDecorator"><img src="/public/image/gallery.svg"></div>Gallery
+                </a>
+                <a href="/contact">
+                    <div class="menuDecorator"><img src="/public/image/contact.svg"></div>Contact
+                </a>
+                <a href="/location">
+                    <div class="menuDecorator"><img src="/public/image/location.svg"></div>Location
+                </a>
+                <a href="/bowling">
+                    <div class="menuDecorator"><img src="/public/image/bowling.svg"></div>Bowling
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

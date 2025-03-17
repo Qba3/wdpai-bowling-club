@@ -6,6 +6,7 @@ use App\service\security\UserService;
 require_once 'src/repository/UserRepository.php';
 require_once 'src/service/security/UserService.php';
 require_once 'src/controller/MainController.php';
+require_once 'src/controller/SecurityController.php';
 
 $host = 'wdpai-bowling-club-db-1';
 $port = '5433';

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'di_config.php';
+require_once '../../../di_config.php';
 
 
 $di = DI::getInstance();
