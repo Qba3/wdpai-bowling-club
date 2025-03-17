@@ -63,6 +63,11 @@ class SecurityController extends Controller
         $this->render('login', ["message" => $message]);
     }
 
+    public function logout(string $message = null): void
+    {
+        $this->render('login', ["message" => $message]);
+    }
+
     public function register(string $message = null): void
     {
         $this->render('register', ["message" => $message]);

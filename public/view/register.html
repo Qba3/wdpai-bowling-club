@@ -5,47 +5,47 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Register</title>
-    <link href="/css/login.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/login.css" rel="stylesheet" type="text/css">
     <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 
 <body>
-<div class="container">
-    <div class="left-column">
-        <div>
-            <div id="logo"><img src="/public/image/bowling.jpeg"></div>
+    <div class="container">
+        <div class="left-column">
+            <div>
+                <div id="logo"><img src="/public/image/bowling.jpeg"></div>
+            </div>
+        </div>
+        <div class="right-column">
+            <form action="/src/service/security/Register.php" method="post">
+                <div class="messages">
+                    <h5>
+                        <?php echo $message; ?>
+                    </h5>
+                </div>
+                <label for="firstname">Firstname</label>
+                <input id="firstname" name="firstname" type="text">
+                <label for="lastname">Lastname</label>
+                <input id="lastname" name="lastname" type="text">
+                <label for="login">Login</label>
+                <input id="login" name="login" type="text">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password">
+                <label for="role">Role</label>
+                <select id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="guest">Guest</option>
+                    <option value="employee">Employee</option>
+                </select>
+                <button type="submit"><b>Sign up!</b></button>
+                <label id="signup"><a href="/login">Have an account? Sign in!</a></label>
+            </form>
         </div>
     </div>
-    <div class="right-column">
-        <form action="/src/service/security/Register.php" method="post">
-            <div class="messages">
-                <h5>
-                    <?php echo $message; ?>
-                </h5>
-            </div>
-            <label for="firstname">Firstname</label>
-            <input id="firstname" name="firstname" type="text">
-            <label for="lastname">Lastname</label>
-            <input id="lastname" name="lastname" type="text">
-            <label for="login">Login</label>
-            <input id="login" name="login" type="text">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="text">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password">
-            <label for="confirmPassword">Confirm Password</label>
-            <input id="confirmPassword" name="confirmPassword" type="password">
-            <label for="role">Role</label>
-            <select id="role" name="role">
-                <option value="admin">Admin</option>
-                <option value="guest">Guest</option>
-                <option value="employee">Employee</option>
-            </select>
-            <button type="submit"><b>Sign up!</b></button>
-            <label id="signup"><a href="/login">Have an account? Sign in!</a></label>
-        </form>
-    </div>
-</div>
 </body>
 
 </html>

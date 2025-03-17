@@ -13,7 +13,8 @@ if ($path === '') {
 }
 
 Routing::get('main', $di->mainController);
-Routing::post('login', $di->securityController);
-Routing::post('register', $di->securityController);
+Routing::get('login', $di->securityController);
+Routing::get('register', $di->securityController);
+Routing::get('logout', $di->securityController);
 
 Routing::run($path);

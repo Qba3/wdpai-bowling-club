@@ -15,12 +15,6 @@ class Routing
         self::$routes[$url] = $controller;
     }
 
-    public static function post($url, $controller): void
-    {
-        self::$routes[$url] = $controller;
-    }
-
-
     public static function run($url): void
     {
         $action = explode("/", $url)[0];

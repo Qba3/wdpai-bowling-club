@@ -5,26 +5,31 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
-    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
     <title>Bowling</title>
 </head>
 
 <body>
-<div class="container">
-    <header>
-        <?php
+    <div class="container">
+        <header>
+            <div>
+                <h2>
+                    <?php
                 if (isset($_SESSION['user_id'])) {
-                    echo "Welcome " . $_SESSION['username'];
+                    echo "Welcome " . $_SESSION['username'] . "!";
                 } else {
                     echo "User not singed in";
                 };
             ?>
-    </header>
-    <h2>
-
-    </h2>
-    <a href="/login">Login</a>
-</div>
+                </h2>
+            </div>
+            <div id="logoutDiv">
+                <h2>
+                    <a href="/logout">Log out</a>
+                </h2>
+            </div>
+        </header>
+    </div>
 </body>
 
 </html>
