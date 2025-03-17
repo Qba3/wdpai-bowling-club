@@ -21,13 +21,23 @@ class UserService
         return $this->userRepository->getAll();
     }
 
-    public function getUser(string $login): ?User
+    public function getUserByLogin(string $login): ?User
     {
         return $this->userRepository->findUserByLogin($login);
+    }
+
+    public function getUserByEmail(string $email): ?User
+    {
+        return $this->userRepository->findUserByEmail($email);
     }
 
     public function verifyUser(User $user, string $password): bool
     {
         return $user->getPassword() === $password;
+    }
+
+    public function addUser(User $user): bool
+    {
+        return $this->userRepository->createUser($user);
     }
 }

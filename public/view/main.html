@@ -4,13 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <link rel="icon" href="/public/image/favicon.ico" type="image/x-icon">
+    <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
     <title>Bowling</title>
 </head>
 
 <body>
-<h1>Main</h1>
-<a href="/login">Login</a>
+<div class="container">
+    <header>
+        <?php
+                if (isset($_SESSION['user_id'])) {
+                    echo "Welcome " . $_SESSION['username'];
+                } else {
+                    echo "User not singed in";
+                };
+            ?>
+    </header>
+    <h2>
+
+    </h2>
+    <a href="/login">Login</a>
+</div>
 </body>
 
 </html>

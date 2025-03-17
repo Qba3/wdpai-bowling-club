@@ -1,6 +1,4 @@
 <?php
-
-
 require '../../controller/SecurityController.php';
 require '../../../di_config.php';
 
@@ -40,7 +38,7 @@ if ($password == null) {
     return;
 }
 
-if ($passwordConfirm == password) {
+if ($passwordConfirm === $password) {
     $di->securityController->register("Password confirm is invalid");
     return;
 }

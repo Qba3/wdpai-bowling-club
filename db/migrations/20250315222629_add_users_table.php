@@ -9,10 +9,10 @@ final class AddUsersTable extends AbstractMigration
     public function up(): void
     {
         $table = $this->table('users');
-        $table->addColumn('login', 'string')
-            ->addColumn('email', 'string')
-            ->addColumn('firstname', 'string')
+        $table->addColumn('firstname', 'string')
             ->addColumn('lastname', 'string')
+            ->addColumn('login', 'string')
+            ->addColumn('email', 'string')
             ->addColumn('role', 'string')
             ->addColumn('password', 'string')
             ->create();

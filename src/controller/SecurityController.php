@@ -16,7 +16,7 @@ class SecurityController extends Controller
 
     public function verify(string $login, $password): void
     {
-        $user = $this->userService->getUser($login);
+        $user = $this->userService->getUserByLogin($login);
 
         if ($user === null) {
             $this->render('login', ["message" => "User does not exist"]);
@@ -27,17 +27,35 @@ class SecurityController extends Controller
             $this->render('login', ["message" => "Password is incorrect"]);
             return;
         }
+
+        session_start();
+        $_SESSION['user_id'] = $user->getLogin();
+        $_SESSION['username'] = $user->getFirstname();
+
         $this->render('main');
-        print_r("Welcome " . $user->getFirstname() . "!");
     }
 
     public function addUser(string $firstname, string $lastname, string $login, string $email, string $password, string $role): void
     {
-        $user = $this->userService->getUser($login);
+        $user = $this->userService->getUserByLogin($login);
+        if ($user !== null) {
+            $this->render('register', ["message" => 'User with this login already exists']);
+            return;
+        }
+
+        $user = $this->userService->getUserByEmail($email);
+        if ($user !== null) {
+            $this->render('register', ["message" => 'User with this email already exists']);
+            return;
+        }
 
         $user = new User($firstname, $lastname, $login, $email, $password, $role);
-        $this->userService->addUser($user);
+        if ($this->userService->addUser($user)) {
+            $this->render('main');
+            return;
+        }
 
+        $this->render('register', ["message" => 'User could not be added - please contact the administrator']);
     }
 
     public function login(string $message = null): void

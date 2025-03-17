@@ -7,6 +7,11 @@ class MainController extends Controller
 
     public function main()
     {
-        $this->render('main');
+        session_start();
+        if (isset($_SESSION['username'])) {
+            $this->render('main');
+            return;
+        }
+        $this->render('login', ["message" => "You need to login first"]);
     }
 }

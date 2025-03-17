@@ -5,33 +5,33 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
-    <link rel="icon" href="/public/image/favicon.ico" type="image/x-icon">
+    <link href="/css/login.css" rel="stylesheet" type="text/css">
+    <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 
 <body>
-    <div class="container">
-        <div class="left-column">
-            <div>
-                <div id="logo"> <img src="/public/image/bowling.jpeg"> </div>
-            </div>
-        </div>
-        <div class="right-column">
-            <form action="/src/service/security/Login.php" method="post">
-                <div class="messages">
-                    <h5>
-                        <?php echo $message; ?>
-                    </h5>
-                </div>
-                <label for="login">Login</label>
-                <input id="login" name="login" type="text">
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password">
-                <button type="submit"><b>Sign in!</b></button>
-                <label id="signup"><a href="/register">No account? Sign up!</a></label>
-            </form>
+<div class="container">
+    <div class="left-column">
+        <div>
+            <div id="logo"><img src="/public/image/bowling.jpeg"></div>
         </div>
     </div>
+    <div class="right-column">
+        <form action="/src/service/security/Login.php" method="post">
+            <div class="messages">
+                <h5>
+                    <?php echo $message; ?>
+                </h5>
+            </div>
+            <label for="login">Login</label>
+            <input id="login" name="login" type="text">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <button type="submit"><b>Sign in!</b></button>
+            <label id="signup"><a href="/register">No account? Sign up!</a></label>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>
