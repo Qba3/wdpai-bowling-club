@@ -31,8 +31,22 @@ class SecurityController extends Controller
         print_r("Welcome " . $user->getFirstname() . "!");
     }
 
+    public function addUser(string $firstname, string $lastname, string $login, string $email, string $password, string $role): void
+    {
+        $user = $this->userService->getUser($login);
+
+        $user = new User($firstname, $lastname, $login, $email, $password, $role);
+        $this->userService->addUser($user);
+
+    }
+
     public function login(string $message = null): void
     {
         $this->render('login', ["message" => $message]);
+    }
+
+    public function register(string $message = null): void
+    {
+        $this->render('register', ["message" => $message]);
     }
 }

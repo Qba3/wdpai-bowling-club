@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     <link rel="icon" href="/public/image/favicon.ico" type="image/x-icon">
 </head>
@@ -17,18 +17,31 @@
             </div>
         </div>
         <div class="right-column">
-            <form action="/src/service/security/Login.php" method="post">
+            <form action="/src/service/security/Register.php" method="post">
                 <div class="messages">
                     <h5>
                         <?php echo $message; ?>
                     </h5>
                 </div>
+                <label for="firstname">Firstname</label>
+                <input id="firstname" name="firstname" type="text">
+                <label for="lastname">Lastname</label>
+                <input id="lastname" name="lastname" type="text">
                 <label for="login">Login</label>
                 <input id="login" name="login" type="text">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text">
                 <label for="password">Password</label>
                 <input id="password" name="password" type="password">
-                <button type="submit"><b>Sign in!</b></button>
-                <label id="signup"><a href="/register">No account? Sign up!</a></label>
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password">
+                <label for="role">Role</label>
+                <select id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="guest">Guest</option>
+                    <option value="employee">Employee</option>
+                </select>
+                <button type="submit"><b>Sign up!</b></button>
             </form>
         </div>
     </div>
