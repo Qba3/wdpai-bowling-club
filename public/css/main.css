@@ -1,18 +1,135 @@
 body {
-    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
 }
 
 h1 {
-    color: navy;
     text-align: center;
 }
 
-p {
-    font-family: verdana;
-    font-size: 20px;
+.container {
+    min-height: 410px;
+    display: flex;
+    flex: 1;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: lightblue;
+.left-column {
+    flex: 2;
+    background: linear-gradient(to bottom, #252422,
+            #CCC5B9);
+    padding: 20px;
+}
+
+.left-column>div {
+    width: 99%;
+    height: 99%;
+    background: linear-gradient(to bottom, #EB5E28, #252422);
+    padding: 2px auto;
+    border-radius: 5%;
+}
+
+.right-column {
+    flex: 1;
+    background: linear-gradient(to bottom, #252422, #EB5E28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+#signup {
+    justify-content: center;
+    text-align: center;
+    margin-top: 2px;
+}
+
+form {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 730px;
+    border: 2px solid bisque;
+}
+
+form a {
+    justify-content: center;
+    font-size: small;
+    margin: 10px auto;
+    margin-left: 12px;
+    margin-top: 5px;
+}
+
+label,
+input {
+    width: 90%;
+    display: block;
+    margin: 10px;
+    margin-left: 2px;
+    font-family: 'Impact', sans-serif;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 50px;
+}
+
+button {
+    background-color: #EB5E28;
+    color: white;
+    padding: 10px;
+    border: 1px solid none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px;
+    margin-left: 2px;
+    margin-bottom: 0px;
+}
+
+button:hover {
+    background-color: #D64D1E;
+}
+
+.messages h5 {
+    color: red;
+    text-align: center;
+}
+
+@media (max-width: 934px) {
+    .left-column {
+        display: none;
+    }
+
+    .right-column {
+        flex: 1;
+        background: linear-gradient(to bottom, #252422, #EB5E28);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-height: 512px) {
+    .left-column {
+        display: none;
+    }
+
+    .right-column {
+        flex: 1;
+        background: linear-gradient(to bottom, #252422, #EB5E28);
+        width: 100%;
+    }
 }

@@ -50,6 +50,8 @@ services:
       - .:/app
     networks:
       - pg-network
+    depends_on:
+      - db
 
   pgadmin-wdpai:
     image: dpage/pgadmin4:latest
