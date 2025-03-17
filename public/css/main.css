@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'Impact';
+    src: url('path_to_font/impact.woff2') format('woff2'),
+        url('path_to_font/impact.woff') format('woff');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -12,27 +23,188 @@ body {
     min-height: 410px;
     display: flex;
     flex: 1;
-    background-color: #D64D1E;
+    flex-direction: column;
+    align-items: stretch;
+    background: linear-gradient(to right, #252422 0%, #EB5E28 50%, #252422 100%);
 }
 
 header>div {
     flex: 1;
+    font-size: larger;
+    white-space: nowrap;
 }
 
 header>div>h2 {
     margin: 5px;
     padding: 5px;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 1px #CCC5B9;
+    color: black;
+    text-decoration: underline;
 }
 
 #logoutDiv {
     text-align: right;
     justify-content: center;
     align-items: center;
+    -webkit-text-stroke: 1px black;
+    color: #CCC5B9;
 }
 
+#logoutDiv>h2>a:visited {
+    -webkit-text-stroke: 1px black;
+    color: #CCC5B9;
+}
+
+#logoutDiv>h2>a {
+    border-radius: 50px;
+    border: 2px solid black;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #b3461b;
+}
+
+h2>a:hover {
+    background: linear-gradient(to right, #EB5E28, #252422);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
 header {
+    background: linear-gradient(to right, #252422, #CCC5B9);
     display: flex;
     width: 100vw;
+    height: 55px;
+}
+
+#leftColumn {
+    flex: 3;
+    height: calc(100vh - 95px);
+    background: linear-gradient(to bottom, #CCC5B9, #252422);
+}
+
+#rightColumn {
+    flex: 1;
+    height: calc(100vh - 95px);
+    background: linear-gradient(to bottom, #EB5E28, #252422);
+}
+
+#columns {
+    display: flex;
+}
+
+.column {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#rightColumn>a {
+    width: calc(90% - 20px);
+    height: 40px;
+    margin: 10px;
+    margin-left: 2px;
+    font-family: 'Impact', sans-serif;
+    padding: 10px;
+    padding-left: 35px;
+    border: 2px solid #252422;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    transition: color 0.5s ease, transform 0.5s ease;
+    background: linear-gradient(to right, #EB5E28, #CCC5B9);
+    font-size: 45px;
+}
+
+#rightColumn>a:hover {
+    transform: translateX(-50px);
+}
+
+.menuDecorator {
+    position: relative;
+    left: -36px;
+    background-color: #CCC;
+    width: 50px;
+    height: 62px;
+    background-color: #252422;
+    margin-right: 10px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.menuDecorator>img {
+    margin: 6.5px auto;
+    width: 50px;
     height: 50px;
-    background-color: #CCC5B9;
+    transform: scale(0.7);
+}
+
+@media (max-width: 934px) {
+    #columns {
+        min-height: 410px;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: stretch;
+        background: linear-gradient(to right, #252422 0%, #EB5E28 50%, #252422 100%);
+    }
+
+    #rightColumn>a {
+        width: calc(35% - 20px);
+        height: 10px;
+        margin: 10px;
+        margin-left: 21px;
+        font-family: 'Impact', sans-serif;
+        padding: 10px;
+        padding-left: 5px;
+        border: 2px solid #252422;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        position: relative;
+        transition: color 0.5s ease, transform 0.5s ease;
+        background: linear-gradient(to right, #EB5E28, #CCC5B9);
+        font-size: 50%;
+    }
+
+    .menuDecorator {
+        position: relative;
+        left: -6px;
+        background-color: #CCC;
+        width: 50px;
+        height: 32px;
+        background-color: #252422;
+        margin-right: 10px;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+    }
+
+    .menuDecorator>img {
+        margin: 0px auto;
+        width: 32px;
+        height: 32px;
+        transform: scale(0.5);
+    }
+
+    header>div {
+        flex: 1;
+        font-size: small;
+        white-space: nowrap;
+    }
+
+    .column {
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        display: ruby;
+    }
 }

@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/map.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <title>Bowling</title>
 </head>
@@ -33,18 +34,28 @@
         </header>
         <div id="columns">
             <div id="leftColumn" class="column">
-                <h3>Your schedule</h3>
-                <div>a</div>
+                <h1>Our Location</h1>
+                <div id="map"></div>
+                <p>Address: ul. Szlak 73, 31-153 Kraków, Polska</p>
+                <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoicWJhMzMxIiwiYSI6ImNtOGRoNmZiejI4OHAycnM4MXFxOTJsaDEifQ.3Uys3fkgmPBlhCOQ5xvqug';
+                    const map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/streets-v11',
+                        center: [19.9430, 50.0720], // PK
+                        zoom: 17,
+                    });
+                    document.querySelector('.mapboxgl-control-container').remove();
+                </script>
             </div>
             <div id="rightColumn" class="column">
-                <?php
-                                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
-                                        echo "<a href='/admin'>
-                    <div class='menuDecorator'><img src='/public/image/admin.svg'></div>Admin
-                </a>";
-                                    } 
-                                ?>
-
+                <?php 
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) { 
+                        echo "<a href='/admin'><div class='menuDecorator'>
+                            <img src='/public/image/admin.svg'>
+                    </div>Admin</a>";
+                }?>
                 <a href="/main">
                     <div class="menuDecorator"><img src="/public/image/schedule.svg"></div>Schedule
                 </a>

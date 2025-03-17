@@ -33,18 +33,40 @@
         </header>
         <div id="columns">
             <div id="leftColumn" class="column">
-                <h3>Your schedule</h3>
-                <div>a</div>
+                <h3>Admin panel</h3>
+                <ul id="userList"></ul>
+
+                <script>
+                    async function fetchUsers() {
+                        console.log("dd")
+                        try {
+                            const response = await fetch('/src/service/security/FetchUsers.php');
+                            console.log(response)
+                            const users = await response.json();
+
+                            console.log(users)
+
+                            const userList = document.getElementById('userList');
+                            users.forEach(user => {
+                                const li = document.createElement('li');
+                                li.textContent = `${user.login} (${user.email})`;
+                                userList.appendChild(li);
+                            });
+                        } catch (error) {
+                            console.error('Users fetch error:', error);
+                        }
+                    }
+
+                    window.onload = fetchUsers;
+                </script>
             </div>
             <div id="rightColumn" class="column">
-                <?php
-                                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
-                                        echo "<a href='/admin'>
-                    <div class='menuDecorator'><img src='/public/image/admin.svg'></div>Admin
-                </a>";
-                                    } 
-                                ?>
-
+                <?php 
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) { 
+                        echo "<a href='/admin'><div class='menuDecorator'>
+                            <img src='/public/image/admin.svg'>
+                        </div>Admin</a>";
+                    }?>
                 <a href="/main">
                     <div class="menuDecorator"><img src="/public/image/schedule.svg"></div>Schedule
                 </a>

@@ -41,7 +41,7 @@ class UserRepository extends Repository
 
     public function getAll(): array
     {
-        $stmt = $this->pdo->query("SELECT firstname, lastname,login, email, role FROM users");
+        $stmt = $this->pdo->query("SELECT firstname, lastname, login, email, role FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
