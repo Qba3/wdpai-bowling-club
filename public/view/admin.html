@@ -37,54 +37,16 @@
                 <table border="1" id="usersTable">
                     <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
                             <th>Email</th>
                             <th>Login</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
-
-                <script>
-                    async function fetchUsers() {
-                        const response = await fetch('/src/service/security/FetchUsers.php');
-                        const users = await response.json();
-
-                        const tbody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
-
-                        users.forEach(user => {
-                            const row = document.createElement('tr');
-
-                            const firstNameCell = document.createElement('td');
-                            firstNameCell.textContent = user.firstname;
-
-                            const lastNameCell = document.createElement('td');
-                            lastNameCell.textContent = user.lastname;
-
-                            const emailCell = document.createElement('td');
-                            emailCell.textContent = user.email;
-
-                            const loginCell = document.createElement('td');
-                            loginCell.textContent = user.login;
-
-                            const roleCell = document.createElement('td');
-                            roleCell.textContent = user.role;
-
-                            row.appendChild(firstNameCell);
-                            row.appendChild(lastNameCell);
-                            row.appendChild(emailCell);
-                            row.appendChild(loginCell);
-                            row.appendChild(roleCell);
-
-                            tbody.appendChild(row);
-                        });
-                    }
-
-                    window.onload = fetchUsers;
-                </script>
+                <script src="/public/js/UsersTable.js"></script>
             </div>
             <div id="rightColumn" class="column">
                 <?php 

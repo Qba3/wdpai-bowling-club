@@ -88,4 +88,12 @@ class UserRepository extends Repository
 
         return $stmt->execute();
     }
+
+    public function deleteUserByLogin(string $login): bool
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM users WHERE login = :login');
+        $stmt->bindParam(':login', $login);
+
+        return $stmt->execute();
+    }
 }
