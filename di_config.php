@@ -7,6 +7,7 @@ require_once 'src/repository/UserRepository.php';
 require_once 'src/service/security/UserService.php';
 require_once 'src/controller/MainController.php';
 require_once 'src/controller/SecurityController.php';
+require_once 'src/controller/ReservationController.php';
 
 $host = 'wdpai-bowling-club-db-1';
 $port = '5433';
@@ -27,6 +28,7 @@ class DI
     public UserService $userService;
     public SecurityController $securityController;
     public MainController $mainController;
+    public ReservationController $reservationController;
 
     public function __construct()
     {
@@ -45,6 +47,7 @@ class DI
         $this->userService = new UserService($this->userRepository);
         $this->securityController = new SecurityController($this->userService);
         $this->mainController = new MainController();
+        $this->reservationController = new ReservationController();
     }
 
     public static function getInstance(): DI

@@ -1,30 +1,30 @@
-.column {
+#columnLeft {
     padding: 10px;
     overflow: auto;
 }
 
 .calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    /* 7 kolumn na dni tygodnia */
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto repeat(14, 50px);
-    /* 14 wierszy na godziny od 10:00 do 23:00 */
     gap: 5px;
 }
 
 .day,
-.hour {
+.hour,
+.hourWindow {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
     text-align: center;
 }
 
 .day {
     font-weight: bold;
-    background-color: #f0f0f0;
+    background-color: #dfdfdf;
 }
 
 .available {
@@ -38,5 +38,9 @@
 }
 
 .hour {
+    background-color: #dfdfdf;
+}
+
+.hourWindow {
     background-color: #fff;
 }
