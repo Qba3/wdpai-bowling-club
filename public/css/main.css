@@ -1,12 +1,32 @@
-@font-face {
-    font-family: 'Impact';
-    src: url('path_to_font/impact.woff2') format('woff2'),
-        url('path_to_font/impact.woff') format('woff');
-}
-
 * {
     margin: 0;
     padding: 0;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pricing-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-item h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.pricing-item p {
+    color: #555;
+    font-size: 16px;
+    margin: 5px 0;
 }
 
 #usersTable {
@@ -111,6 +131,8 @@ header {
     flex: 3;
     height: calc(100vh - 95px);
     background: linear-gradient(to bottom, #CCC5B9, #252422);
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 #rightColumn {
@@ -174,7 +196,70 @@ header {
     transform: scale(0.7);
 }
 
-@media (max-width: 934px) {
+.leftColumnPrice {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.priceList {
+    text-align: center;
+    color: #333;
+}
+
+.burgerMenu {
+    display: none;
+}
+
+.hidden {
+    display: ruby !important;
+}
+
+@media (max-width: 934px),
+(max-height: 585px) {
+    #rightColumn>a:hover {
+        transform: none;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .burgerMenu {
+        user-select: none;
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        display: block;
+        border: 2px dashed wheat;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        font-size: 35px;
+        color: wheat;
+        text-align: center;
+        justify-content: center;
+        background-color: #9c3f1b;
+    }
+
+    .burgerMenu:hover {
+        background-color: #555;
+        transform: scale(1.1);
+    }
+
+    .priceList {
+        display: none;
+    }
+
+    .leftColumnPrice {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .pricing-item {
+        width: calc(89vw - 40px);
+    }
+
     #usersTable {
         max-height: 300px;
     }
@@ -222,7 +307,6 @@ header {
         margin-right: 10px;
         border-top-left-radius: 50px;
         border-bottom-left-radius: 50px;
-
     }
 
     .menuDecorator>img {
@@ -243,5 +327,17 @@ header {
         padding: 10px;
         margin: 10px;
         display: ruby;
+    }
+
+    @media (max-width: 330px) {
+        .menuDecorator {
+            display: none;
+        }
+
+        #rightColumn>a {
+            text-align: center;
+            justify-content: center;
+            font-size: medium;
+        }
     }
 }

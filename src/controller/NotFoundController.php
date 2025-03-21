@@ -8,6 +8,7 @@ class NotFoundController extends Controller
 {
     public function index()
     {
+        session_start();
         $this->render('notFound');
     }
 }

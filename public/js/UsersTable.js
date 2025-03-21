@@ -41,4 +41,4 @@ async function fetchUsers() {
     });
 }
 
-window.onload = fetchUsers;
+fetchUsers();

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <title>Bowling</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h2>
+                    <?php
+                        if (isset($_SESSION['user_id'])) {
+                            echo "Welcome " . $_SESSION['username'] . "!";
+                        } else {
+                            echo "User not signed in";
+                        };
+                    ?>
+                </h2>
+            </div>
+            <div id="logoutDiv">
+                <h2>
+                    <a href="/logout">Log out</a>
+                </h2>
+            </div>
+        </header>
+        <div id="columns">
+            <div id="leftColumn" class="column leftColumnContact">
+                <h2 class="priceList">Contact Information</h2>
+                <div class="pricing">
+                    <div class="pricing-item">
+                        <h3>Email</h3>
+                        <p>info@bowlingclub.com</p>
+                        <p>support@bowlingclub.com</p>
+                    </div>
+                    <div class="pricing-item">
+                        <h3>Phone</h3>
+                        <p>+48 123 456 789</p>
+                        <p>+48 987 654 321</p>
+                    </div>
+                    <div class="pricing-item">
+                        <h3>Address</h3>
+                        <p>Warszawska 24 Street</p>
+                        <p>31-155 Kraków, Poland</p>
+                    </div>
+                    <div class="pricing-item">
+                        <h3>Social Media</h3>
+                        <p><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i>
+                                Facebook</a></p>
+                        <p><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>
+                                Twitter</a></p>
+                        <p><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i>
+                                Instagram</a></p>
+                    </div>
+                    <div class="pricing-item">
+                        <h3>Working Hours</h3>
+                        <p>Monday - Friday: 10:00 - 22:00</p>
+                        <p>Saturday - Sunday: 12:00 - 23:00</p>
+                    </div>
+                </div>
+            </div>
+            <div id="rightColumn" class="column">
+                <?php
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+                        echo "<a href='/admin'>
+                            <div class='menuDecorator'><img src='/public/image/admin.svg'></div>Admin
+                        </a>";
+                    } 
+                ?>
+                <a href="/main">
+                    <div class="menuDecorator"><img src="/public/image/schedule.svg"></div>Schedule
+                </a>
+                <a href="/gallery">
+                    <div class="menuDecorator"><img src="/public/image/gallery.svg"></div>Gallery
+                </a>
+                <a href="/contact">
+                    <div class="menuDecorator"><img src="/public/image/contact.svg"></div>Contact
+                </a>
+                <a href="/location">
+                    <div class="menuDecorator"><img src="/public/image/location.svg"></div>Location
+                </a>
+                <a href="/bowling">
+                    <div class="menuDecorator"><img src="/public/image/bowling.svg"></div>Bowling
+                </a>
+            </div>
+            <div id="burgerMenu" class="burgerMenu">☰</div>
+            <script src="/public/js/BurgerMenuToggle.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>

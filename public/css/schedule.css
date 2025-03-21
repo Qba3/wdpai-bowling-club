@@ -1,0 +1,42 @@
+.column {
+    padding: 10px;
+    overflow: auto;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 kolumn na dni tygodnia */
+    grid-template-rows: auto repeat(14, 50px);
+    /* 14 wierszy na godziny od 10:00 do 23:00 */
+    gap: 5px;
+}
+
+.day,
+.hour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.day {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.available {
+    background-color: #8bc34a;
+    cursor: pointer;
+}
+
+.reserved {
+    background-color: #f44336;
+    cursor: not-allowed;
+}
+
+.hour {
+    background-color: #fff;
+}

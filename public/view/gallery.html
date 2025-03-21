@@ -6,7 +6,23 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/gallery.css" rel="stylesheet" type="text/css">
     <title>Bowling</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const response = await fetch('/src/service/GetImages.php');
+            const images = await response.json();
+            const leftColumn = document.getElementById('leftColumn');
+
+            images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image;
+                imgElement.alt = "Gallery image";
+                imgElement.classList.add('gallery-image');
+                leftColumn.appendChild(imgElement);
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -32,8 +48,7 @@
         </header>
         <div id="columns">
             <div id="leftColumn" class="column">
-                <h3>Error 404</h3>
-                <h3>Page not found</h3>
+
             </div>
             <div id="rightColumn" class="column">
                 <?php
