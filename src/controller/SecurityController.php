@@ -29,7 +29,7 @@ class SecurityController extends Controller
         }
 
         session_start();
-        $_SESSION['user_id'] = $user->getLogin();
+        $_SESSION['user_id'] = $this->userService->getUserIdByLogin($user->getLogin());
         $_SESSION['username'] = $user->getFirstname();
         $_SESSION['role'] = $user->getRole();
 

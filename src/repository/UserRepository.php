@@ -5,10 +5,9 @@ namespace App\repository;
 use PDO;
 use User;
 
-require_once 'Repository.php';
 require_once(__DIR__ . '/../model/User.php');
 
-class UserRepository extends Repository
+class UserRepository
 {
     private $pdo;
 
@@ -37,6 +36,16 @@ class UserRepository extends Repository
         }
 
         return null;
+    }
+
+    public function getUserIdByLogin($login): ?int
+    {
+        $stmt = $this->pdo->prepare("SELECT id FROM users WHERE login = :login");
+        $stmt->bindParam(':login', $login);
+        $stmt->execute();
+
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $userData["id"];
     }
 
     public function getAll(): array

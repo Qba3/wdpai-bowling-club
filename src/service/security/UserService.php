@@ -40,4 +40,9 @@ class UserService
     {
         return $this->userRepository->createUser($user);
     }
+
+    public function getUserIdByLogin(string $login): ?int
+    {
+        return $this->userRepository->getUserIdByLogin($login);
+    }
 }

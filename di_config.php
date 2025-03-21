@@ -1,13 +1,17 @@
 <?php
 
+use App\repository\ReservationRepository;
 use App\repository\UserRepository;
+use App\service\reservation\ReservationService;
 use App\service\security\UserService;
 
-require_once 'src/repository/UserRepository.php';
-require_once 'src/service/security/UserService.php';
 require_once 'src/controller/MainController.php';
 require_once 'src/controller/SecurityController.php';
 require_once 'src/controller/ReservationController.php';
+require_once 'src/service/security/UserService.php';
+require_once 'src/service/reservation/ReservationService.php';
+require_once 'src/repository/UserRepository.php';
+require_once 'src/repository/ReservationRepository.php';
 
 $host = 'wdpai-bowling-club-db-1';
 $port = '5433';
@@ -24,11 +28,13 @@ class DI
     const PASSWORD = 'admin';
     private static PDO $PDO;
     private static $instance;
+    public ReservationRepository $reservationRepository;
+    public ReservationService $reservationService;
+    public ReservationController $reservationController;
     public UserRepository $userRepository;
     public UserService $userService;
     public SecurityController $securityController;
     public MainController $mainController;
-    public ReservationController $reservationController;
 
     public function __construct()
     {
@@ -46,8 +52,12 @@ class DI
         $this->userRepository = new UserRepository(self::$PDO);
         $this->userService = new UserService($this->userRepository);
         $this->securityController = new SecurityController($this->userService);
+
+        $this->reservationRepository = new ReservationRepository(self::$PDO);
+        $this->reservationService = new ReservationService($this->reservationRepository);
+        $this->reservationController = new ReservationController($this->reservationService);
+
         $this->mainController = new MainController();
-        $this->reservationController = new ReservationController();
     }
 
     public static function getInstance(): DI
