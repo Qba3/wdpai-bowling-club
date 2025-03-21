@@ -37,7 +37,7 @@ class MainController extends Controller
     public function gallery(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
             $this->render('gallery');
             return;
         }
@@ -47,7 +47,7 @@ class MainController extends Controller
     public function bowling(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
             $this->render('bowling');
             return;
         }
@@ -57,7 +57,7 @@ class MainController extends Controller
     public function contact(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
             $this->render('contact');
             return;
         }

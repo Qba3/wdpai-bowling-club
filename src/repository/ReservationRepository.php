@@ -18,7 +18,7 @@ class ReservationRepository
 
     public function findReservationsByUserId(int $userId): array
     {
-        $stmt = $this->pdo->prepare("SELECT user_id, day, hour, drink_offer FROM reservations WHERE user_id = :user_id");
+        $stmt = $this->pdo->prepare("SELECT user_id, day, hour FROM reservations WHERE user_id = :user_id");
         $stmt->bindParam(':user_id', $userId);
         $stmt->execute();
 
@@ -40,7 +40,7 @@ class ReservationRepository
 
     public function getAll(): array
     {
-        $stmt = $this->pdo->prepare("SELECT user_id, day, hour, drink_offer FROM reservations ");
+        $stmt = $this->pdo->prepare("SELECT user_id, day, hour FROM reservations ");
         $stmt->execute();
         $reservationsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
