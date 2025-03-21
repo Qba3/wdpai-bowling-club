@@ -22,7 +22,7 @@ Routing::get('login', $di->securityController);
 Routing::get('register', $di->securityController);
 Routing::get('logout', $di->securityController);
 Routing::get('getSchedule', $di->reservationController);
-
+Routing::get('reserveSlot', $di->reservationController);
 
 
 Routing::run($path);

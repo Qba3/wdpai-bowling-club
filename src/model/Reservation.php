@@ -13,14 +13,13 @@ class Reservation
      * @param string $hour
      * @param bool $drinkOffer
      */
-    public function __construct(string $userId, string $day, string $hour, bool $drinkOffer)
+    public function __construct(string $userId, string $day, string $hour)
     {
         $this->userId = $userId;
         $this->day = $day;
         $this->hour = $hour;
-        $this->drinkOffer = $drinkOffer;
     }
-    
+
     /**
      * @return mixed
      */
@@ -67,21 +66,5 @@ class Reservation
     public function setHour(string $hour): void
     {
         $this->hour = $hour;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDrinkOffer(): bool
-    {
-        return $this->drinkOffer;
-    }
-
-    /**
-     * @param bool $drinkOffer
-     */
-    public function setDrinkOffer(bool $drinkOffer): void
-    {
-        $this->drinkOffer = $drinkOffer;
     }
 }

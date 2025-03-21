@@ -19,4 +19,14 @@ class ReservationService
     {
         return $this->reservationRepository->findReservationsByUserId($userId);
     }
+
+    public function getAllReservations(): array
+    {
+        return $this->reservationRepository->getAll();
+    }
+
+    public function save(mixed $userId, mixed $day, mixed $hour): bool
+    {
+        return $this->reservationRepository->save($userId, $day, $hour);
+    }
 }

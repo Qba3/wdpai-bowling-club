@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00",
         "19:00", "20:00", "21:00", "22:00", "23:00"
     ];
+    const excluded = ["monday-23", "tuesday-23", "wednesday-23", "thursday-23", "friday-23", "saturday-10", "sunday-10", "saturday-11", "sunday-11"]
 
     const hourElement = document.createElement('div');
     hourElement.classList.add('hour');
@@ -29,52 +30,59 @@ document.addEventListener('DOMContentLoaded', function () {
             const hourElement = document.createElement('div');
             hourElement.classList.add('hourWindow');
             hourElement.textContent = "";
-            hourElement.id = hour.split(":")[0] + "-" + day.toLowerCase();
+            hourElement.id = day.toLowerCase() + "-" + hour.split(":")[0];
+            hourElement.onclick = function () {
+                reserveSlot(day.toLowerCase(), hour.split(":")[0])
+            };
             calendarContainer.appendChild(hourElement);
         });
-
     });
 
+    excluded.forEach(excluded => {
+        const hourExcluded = document.getElementById(excluded)
+        hourExcluded.style.backgroundColor = "darkgray"
+        hourExcluded.style.cursor = "not-allowed"
+        hourExcluded.onclick = null
+    })
+    getReservations()
 
-    // Pobieranie dostępnych bloków godzinowych z backendu
-    fetch('/getSchedule') // Zmienna URL do API backendu
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            // Załóżmy, że data zawiera tablicę obiektów { day: 'Mon', hour: '10:00', status: 'available' }
-            data.forEach(entry => {
-                const dayIndex = daysOfWeek.indexOf(entry.day);
-                const hourIndex = hours.indexOf(entry.hour);
-                const cellIndex = (hourIndex + 1) * 7 + dayIndex + 7; // Obliczamy index w kalendarzu
+    function getReservations() {
+        fetch('/getSchedule')
+            .then(response => response.json())
+            .then(data => {
+                Object.entries(data).forEach(([key, value]) => {
+                    const field = document.getElementById(key)
 
-                const cell = calendarContainer.children[cellIndex];
+                    if (value[0] === value[1]) {
+                        field.classList.add("reservedByYou")
+                        field.textContent = "Reserved by you"
+                        field.onclick = null
+                    } else {
+                        field.classList.add("reserved")
+                        field.textContent = "Reserved"
+                        field.onclick = null
+                    }
 
-                // Jeśli blok jest dostępny, dodajemy klasę 'available', w przeciwnym razie 'reserved'
-                if (entry.status === 'available') {
-                    cell.classList.add('available');
-                    cell.addEventListener('click', () => reserveSlot(entry.day, entry.hour));
-                } else {
-                    cell.classList.add('reserved');
-                }
+                    field.classList.remove("hourWindow")
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching schedule:', error);
             });
-        })
-        .catch(error => {
-            console.error('Error fetching schedule:', error);
-        });
+    }
 
-    // Funkcja do rezerwowania slotu
     function reserveSlot(day, hour) {
-        // Możesz dodać tutaj wywołanie AJAX do backendu, aby zarezerwować dany blok
-        fetch('/path-to-api/reserve-slot', {
+        fetch('/reserveSlot', {
             method: 'POST',
-            body: JSON.stringify({ day, hour }),
+            body: JSON.stringify({day, hour}),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
+                if (data.status === "success") {
+                    getReservations()
                     alert('Slot reserved successfully!');
                 } else {
                     alert('Error reserving the slot.');

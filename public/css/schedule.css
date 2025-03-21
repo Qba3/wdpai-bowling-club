@@ -10,9 +10,12 @@
     gap: 5px;
 }
 
+
 .day,
 .hour,
-.hourWindow {
+.hourWindow,
+.reservedByYou,
+.reserved {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,9 +30,8 @@
     background-color: #dfdfdf;
 }
 
-.available {
+.reservedByYou {
     background-color: #8bc34a;
-    cursor: pointer;
 }
 
 .reserved {
@@ -43,4 +45,14 @@
 
 .hourWindow {
     background-color: #fff;
+    cursor: pointer;
+}
+
+.hourWindow:hover {
+    background-color: #f8d2cb;
+    cursor: pointer;
+}
+
+.reservationWindow {
+    
 }

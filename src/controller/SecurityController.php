@@ -53,7 +53,7 @@ class SecurityController extends Controller
 
         $user = new User($firstname, $lastname, $login, $email, $password, $role);
         if ($this->userService->addUser($user)) {
-            $this->render('main');
+            $this->render('login', ["message" => 'User created successfully']);
             return;
         }
 
