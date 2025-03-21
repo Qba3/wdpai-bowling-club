@@ -4,7 +4,7 @@ require_once 'Controller.php';
 
 class MainController extends Controller
 {
-    public function main()
+    public function main(): void
     {
         session_start();
         if (isset($_SESSION['username'])) {
@@ -14,7 +14,7 @@ class MainController extends Controller
         $this->render('login', ["message" => "You need to login first"]);
     }
 
-    public function location()
+    public function location(): void
     {
         session_start();
         if (isset($_SESSION['username'])) {
@@ -24,40 +24,40 @@ class MainController extends Controller
         $this->render('login', ["message" => "You need to login first"]);
     }
 
-    public function admin()
+    public function admin(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             $this->render('admin');
             return;
         }
         $this->render('login', ["message" => "You need to login as admin first"]);
     }
 
-    public function gallery()
+    public function gallery(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             $this->render('gallery');
             return;
         }
         $this->render('login', ["message" => "You need to login first"]);
     }
 
-    public function bowling()
+    public function bowling(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             $this->render('bowling');
             return;
         }
         $this->render('login', ["message" => "You need to login first"]);
     }
 
-    public function contact()
+    public function contact(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) {
+        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             $this->render('contact');
             return;
         }

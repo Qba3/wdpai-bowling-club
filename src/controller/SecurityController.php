@@ -32,7 +32,7 @@ class SecurityController extends Controller
         $_SESSION['user_id'] = $user->getLogin();
         $_SESSION['username'] = $user->getFirstname();
         $_SESSION['role'] = $user->getRole();
-        
+
 
         $this->render('main');
     }
@@ -67,7 +67,9 @@ class SecurityController extends Controller
 
     public function logout(string $message = null): void
     {
-        $this->render('login', ["message" => $message]);
+        session_start();
+        session_destroy();
+        $this->render('login', ["message" => "You have been logged out"]);
     }
 
     public function register(string $message = null): void
