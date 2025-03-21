@@ -12,7 +12,6 @@ final class AddReservationsTable extends AbstractMigration
         $table->addColumn('user_id', 'integer')
             ->addColumn('day', 'string')
             ->addColumn('hour', 'string')
-            ->addColumn('drink_offer', 'boolean')
             ->addForeignKey('user_id', 'users', 'id', ['delete' => 'CASCADE'])
             ->create();
     }
