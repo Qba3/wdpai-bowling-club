@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/public/image/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <title>Bowling</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h2>
+                    <?php
+                if (isset($_SESSION['user_id'])) {
+                    echo "Welcome " . $_SESSION['username'] . "!";
+                } else {
+                    echo "User not singed in";
+                };
+            ?>
+
+                </h2>
+            </div>
+            <div id="logoutDiv">
+                <h2>
+                    <a href="/logout">Log out</a>
+                </h2>
+            </div>
+        </header>
+        <div id="columns">
+            <div id="leftColumn" class="column">
+                <h3>Admin panel</h3>
+                <table border="1" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Reservation ID</th>
+                            <th>Day</th>
+                            <th>Hour</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="rightColumn" class="column">
+                <?php 
+                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) { 
+                        echo "<a href='/admin'><div class='menuDecorator'>
+                            <img src='/public/image/admin.svg'>
+                        </div>Admin</a>";
+                    }?>
+                <a href="/main">
+                    <div class="menuDecorator"><img src="/public/image/schedule.svg"></div>Schedule
+                </a>
+                <a href="/gallery">
+                    <div class="menuDecorator"><img src="/public/image/gallery.svg"></div>Gallery
+                </a>
+                <a href="/contact">
+                    <div class="menuDecorator"><img src="/public/image/contact.svg"></div>Contact
+                </a>
+                <a href="/location">
+                    <div class="menuDecorator"><img src="/public/image/location.svg"></div>Location
+                </a>
+                <a href="/bowling">
+                    <div class="menuDecorator"><img src="/public/image/bowling.svg"></div>Bowling
+                </a>
+            </div>
+            <div id="burgerMenu" class="burgerMenu">☰</div>
+            <script src="/public/js/ReservationsTable.js" defer></script>
+            <script src="/public/js/BurgerMenuToggle.js" defer></script>
+        </div>
+    </div>
+</body>
+
+</html>

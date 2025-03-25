@@ -14,6 +14,7 @@ if ($path === '') {
 
 Routing::get('main', $di->mainController);
 Routing::get('admin', $di->mainController);
+Routing::get('userReservations', $di->mainController);
 Routing::get('bowling', $di->mainController);
 Routing::get('gallery', $di->mainController);
 Routing::get('contact', $di->mainController);

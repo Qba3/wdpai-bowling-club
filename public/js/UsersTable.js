@@ -5,6 +5,7 @@ async function fetchUsers() {
     const tbody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
 
     users.forEach(user => {
+        console.log(user)
         const row = document.createElement('tr');
 
         const emailCell = document.createElement('td');
@@ -31,7 +32,15 @@ async function fetchUsers() {
             tbody.removeChild(row);
         });
 
+        const reservationsLink = document.createElement('a');
+        reservationsLink.textContent = "RESERVATIONS";
+
+        const userId = user.id;
+        reservationsLink.href = `/userReservations?userId=${userId}`;
+
+        deleteCell.appendChild(reservationsLink);
         deleteCell.appendChild(deleteButton);
+
         row.appendChild(emailCell);
         row.appendChild(loginCell);
         row.appendChild(roleCell);

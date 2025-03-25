@@ -121,5 +121,4 @@ class User
     {
         $this->lastname = $lastname;
     }
-
 }

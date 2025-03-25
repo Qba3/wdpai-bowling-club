@@ -18,7 +18,7 @@ class UserRepository
 
     public function findUserByLogin($login): ?User
     {
-        $stmt = $this->pdo->prepare("SELECT id, login, email, firstname, lastname, role, password FROM users WHERE login = :login");
+        $stmt = $this->pdo->prepare("SELECT login, email, firstname, lastname, role, password FROM users WHERE login = :login");
         $stmt->bindParam(':login', $login);
         $stmt->execute();
 
@@ -50,7 +50,7 @@ class UserRepository
 
     public function getAll(): array
     {
-        $stmt = $this->pdo->query("SELECT firstname, lastname, login, email, role FROM users");
+        $stmt = $this->pdo->query("SELECT id, firstname, lastname, login, email, role FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

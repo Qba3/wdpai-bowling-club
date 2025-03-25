@@ -63,4 +63,14 @@ class MainController extends Controller
         }
         $this->render('login', ["message" => "You need to login first"]);
     }
+
+    public function userReservations(): void
+    {
+        session_start();
+        if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
+            $this->render('userReservations');
+            return;
+        }
+        $this->render('login', ["message" => "You need to login first"]);
+    }
 }

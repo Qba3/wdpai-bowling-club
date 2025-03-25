@@ -4,7 +4,6 @@ class Controller
 {
     protected function render(string $template = null, array $messages = []): void
     {
-
         $templatePath = __DIR__ . '/../../public/view/' . $template . '.html';
         $output = "File not found";
 

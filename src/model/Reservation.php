@@ -2,16 +2,15 @@
 
 class Reservation
 {
+    private int $id;
     private string $userId;
     private string $day;
     private string $hour;
-    private bool $drinkOffer;
 
     /**
      * @param string $userId
      * @param string $day
      * @param string $hour
-     * @param bool $drinkOffer
      */
     public function __construct(string $userId, string $day, string $hour)
     {
@@ -21,7 +20,7 @@ class Reservation
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getUserId(): int
     {
@@ -29,7 +28,7 @@ class Reservation
     }
 
     /**
-     * @param mixed $userId
+     * @param int $userId
      */
     public function setUserId(string $userId): void
     {
@@ -37,7 +36,7 @@ class Reservation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDay(): string
     {
@@ -45,7 +44,7 @@ class Reservation
     }
 
     /**
-     * @param mixed $day
+     * @param string $day
      */
     public function setDay(string $day): void
     {
@@ -53,7 +52,7 @@ class Reservation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getHour(): string
     {
@@ -61,10 +60,18 @@ class Reservation
     }
 
     /**
-     * @param mixed $hour
+     * @param string $hour
      */
     public function setHour(string $hour): void
     {
         $this->hour = $hour;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 }
