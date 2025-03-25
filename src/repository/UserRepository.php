@@ -48,7 +48,7 @@ class UserRepository
         return $userData["id"];
     }
 
-    public function getAll(): array
+    public function fetchAll(): array
     {
         $stmt = $this->pdo->query("SELECT id, firstname, lastname, login, email, role FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

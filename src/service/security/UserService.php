@@ -18,7 +18,7 @@ class UserService
 
     public function getUsers(): array
     {
-        return $this->userRepository->getAll();
+        return $this->userRepository->fetchAll();
     }
 
     public function getUserByLogin(string $login): ?User

@@ -7,11 +7,11 @@ $di = DI::getInstance();
 
 $tableData = [];
 
-foreach ($di->reservationRepository->findReservationsByUserId($_GET['userId']) as $reservation) {
+foreach ($di->reservationRepository->fetchReservationsByUserId($_GET['userId']) as $reservation) {
     $tableData[] = [
-        "user_id" => $reservation->getUserId(),
-        "day" => $reservation->getDay(),
-        "hour" => $reservation->getHour(),
+        "id" => $reservation["id"],
+        "day" => ucfirst($reservation["day"]),
+        "hour" => $reservation["hour"] . ":00",
     ];
 };
 
