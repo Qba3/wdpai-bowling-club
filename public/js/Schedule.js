@@ -74,19 +74,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function reserveSlot(day, hour) {
         fetch('/reserveSlot', {
             method: 'POST',
-            body: JSON.stringify({day, hour}),
+            body: JSON.stringify({ day, hour }),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(response => response.json())
             .then(data => {
-                if (data.status === "success") {
-                    getReservations()
-                    alert('Slot reserved successfully!');
-                } else {
-                    alert('Error reserving the slot.');
-                }
+                getReservations()
+
             })
             .catch(error => {
                 console.error('Error reserving slot:', error);
