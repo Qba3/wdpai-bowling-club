@@ -33,7 +33,7 @@ class UserService
 
     public function verifyUser(User $user, string $password): bool
     {
-        return $user->getPassword() === $password;
+        return password_verify($password, $user->getPassword());
     }
 
     public function addUser(User $user): bool

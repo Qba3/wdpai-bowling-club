@@ -6,7 +6,7 @@ class User
     private string $lastname;
     private string $login;
     private string $email;
-    private string $password;
+    private string $password; //hashed
     private string $role;
 
     public function __construct(
@@ -71,7 +71,7 @@ class User
      */
     public function setPassword(string $password): void
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**

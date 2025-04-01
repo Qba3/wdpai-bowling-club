@@ -43,4 +43,11 @@ if ($passwordConfirm === $password) {
     return;
 }
 
-$di->securityController->addUser($firstname, $lastname, $login, $email, $password, $role);
+$di->securityController->addUser(
+    $firstname,
+    $lastname,
+    $login,
+    $email,
+    password_hash($password, PASSWORD_DEFAULT),
+    $role,
+);
