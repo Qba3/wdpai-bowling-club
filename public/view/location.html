@@ -42,7 +42,7 @@
             </div>
             <div id="rightColumn" class="column">
                 <?php 
-                    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ) { 
+                                        if (isset($_SESSION['roles']) && is_array($_SESSION['roles']) && in_array(2, $_SESSION['roles'], true)) {
                         echo "<a href='/admin'><div class='menuDecorator'>
                             <img src='/public/image/admin.svg'>
                     </div>Admin</a>";

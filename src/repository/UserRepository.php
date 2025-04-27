@@ -2,6 +2,7 @@
 
 namespace App\repository;
 
+use App\service\usersRoles\UsersRolesMapper;
 use PDO;
 use User;
 
@@ -10,15 +11,19 @@ require_once(__DIR__ . '/../model/User.php');
 class UserRepository
 {
     private $pdo;
+    private $usersRolesRepository;
+    private $usersRolesMapper;
 
-    public function __construct(PDO $pdo)
+    public function __construct(PDO $pdo, UsersRolesRepository $usersRolesRepository, UsersRolesMapper $usersRolesMapper)
     {
+        $this->usersRolesRepository = $usersRolesRepository;
+        $this->usersRolesMapper = $usersRolesMapper;
         $this->pdo = $pdo;
     }
 
     public function findUserByLogin($login): ?User
     {
-        $stmt = $this->pdo->prepare("SELECT login, email, firstname, lastname, role, password FROM users WHERE login = :login");
+        $stmt = $this->pdo->prepare("SELECT login, email, firstname, lastname, password FROM users WHERE login = :login");
         $stmt->bindParam(':login', $login);
         $stmt->execute();
 
@@ -31,7 +36,6 @@ class UserRepository
                 $userData['login'],
                 $userData['email'],
                 $userData['password'],
-                $userData['role']
             );
         }
 
@@ -50,13 +54,22 @@ class UserRepository
 
     public function fetchAll(): array
     {
-        $stmt = $this->pdo->query("SELECT id, firstname, lastname, login, email, role FROM users");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("
+            SELECT u.id, u.firstname, u.lastname, u.login, u.email, 
+                   STRING_AGG(r.name, ',' ORDER BY r.name) AS roles
+            FROM users u
+            LEFT JOIN users_roles ur ON u.id = ur.user_id
+            LEFT JOIN roles r ON ur.role_id = r.id
+            GROUP BY u.id
+        ");
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $users;
     }
 
     public function findUserByEmail(string $email): ?User
     {
-        $stmt = $this->pdo->prepare("SELECT firstname, lastname, login, email, role, password FROM users WHERE login = :email");
+        $stmt = $this->pdo->prepare("SELECT firstname, lastname, login, email, password FROM users WHERE login = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
@@ -68,34 +81,39 @@ class UserRepository
                 $userData['lastname'],
                 $userData['login'],
                 $userData['email'],
-                $userData['password'],
-                $userData['role']
+                $userData['password']
             );
         }
 
         return null;
     }
 
-    public function createUser(User $user): bool
+    public function createUser(User $user, array $roles): bool
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, login, email, role, password) 
-                                 VALUES (:firstname, :lastname, :login, :email, :role, :password)");
+        $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, login, email, password) 
+                                 VALUES (:firstname, :lastname, :login, :email, :password)");
 
         $firstname = $user->getFirstname();
         $lastname = $user->getLastname();
         $login = $user->getLogin();
         $email = $user->getEmail();
-        $role = $user->getRole();
         $password = $user->getPassword();
 
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':login', $login);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':role', $role);
         $stmt->bindParam(':password', $password);
 
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            $userId = $this->pdo->lastInsertId();
+            foreach ($roles as $role) {
+                $this->usersRolesRepository->assignRole($userId, $this->usersRolesMapper->getIdByName($role));
+            }
+            return true;
+        }
+
+        return false;
     }
 
     public function deleteUserByLogin(string $login): bool
@@ -104,5 +122,10 @@ class UserRepository
         $stmt->bindParam(':login', $login);
 
         return $stmt->execute();
+    }
+
+    public function getUserRoles(int $userId): array
+    {
+        return $this->usersRolesRepository->getRoleIdsByUserId($userId);
     }
 }

@@ -14,8 +14,8 @@ async function fetchUsers() {
         const loginCell = document.createElement('td');
         loginCell.textContent = user.login;
 
-        const roleCell = document.createElement('td');
-        roleCell.textContent = user.role;
+        const rolesCell = document.createElement('td');
+        rolesCell.textContent = user.roles;
 
         const deleteCell = document.createElement('td');
         const deleteButton = document.createElement('button');
@@ -45,7 +45,7 @@ async function fetchUsers() {
 
         row.appendChild(emailCell);
         row.appendChild(loginCell);
-        row.appendChild(roleCell);
+        row.appendChild(rolesCell);
         row.appendChild(deleteCell);
 
         tbody.appendChild(row);

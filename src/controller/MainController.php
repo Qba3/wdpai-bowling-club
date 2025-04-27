@@ -27,7 +27,7 @@ class MainController extends Controller
     public function admin(): void
     {
         session_start();
-        if (isset($_SESSION['username']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        if (isset($_SESSION['username']) && isset($_SESSION['roles']) && is_array($_SESSION['roles']) && in_array(2, $_SESSION['roles'], true)) {
             $this->render('admin');
             return;
         }

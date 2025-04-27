@@ -36,13 +36,18 @@ class UserService
         return password_verify($password, $user->getPassword());
     }
 
-    public function addUser(User $user): bool
+    public function addUser(User $user, array $roles): bool
     {
-        return $this->userRepository->createUser($user);
+        return $this->userRepository->createUser($user, $roles);
     }
 
     public function getUserIdByLogin(string $login): ?int
     {
         return $this->userRepository->getUserIdByLogin($login);
+    }
+
+    public function getUserRolesById(int $userId): array
+    {
+        return $this->userRepository->getUserRoles($userId);
     }
 }

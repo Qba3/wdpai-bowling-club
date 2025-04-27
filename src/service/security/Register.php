@@ -49,5 +49,5 @@ $di->securityController->addUser(
     $login,
     $email,
     password_hash($password, PASSWORD_DEFAULT),
-    $role,
+    [$role],
 );
