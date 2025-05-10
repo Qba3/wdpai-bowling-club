@@ -18,7 +18,7 @@ Panel rejestracji zawiera pola z danym do uzupełnienia przez użytkownika. Dane
 
 Użytkownik po utworzeniu konta może zalogować się do systemu. Hasła przechowywane są w formie bezpiecznych hashy. Każdy użytkownik może posiadać wiele ról (relacja wiele-do-wielu), co umożliwia elastyczne zarządzanie uprawnieniami i rozwój systemu w przyszłości. Domyślnie dostępne role to:
 
-- `Guest` – użytkownik bez konta lub niezalogowany,
+- `Guest` – gość serwisu, klient kręgielni,
 - `Employee` – pracownik,
 - `Admin` – administrator systemu.
 
