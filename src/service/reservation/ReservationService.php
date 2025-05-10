@@ -17,12 +17,12 @@ class ReservationService
 
     public function getReservationsByUserId(int $userId): array
     {
-        return $this->reservationRepository->findReservationsByUserId($userId);
+        return $this->reservationRepository->fetchReservationsByUserId($userId);
     }
 
     public function getAllReservations(): array
     {
-        return $this->reservationRepository->getAll();
+        return $this->reservationRepository->getAllReservations();
     }
 
     public function save(mixed $userId, mixed $day, mixed $hour): bool

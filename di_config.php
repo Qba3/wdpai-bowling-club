@@ -2,16 +2,20 @@
 
 use App\repository\ReservationRepository;
 use App\repository\UserRepository;
+use App\repository\UsersRolesRepository;
 use App\service\reservation\ReservationService;
 use App\service\security\UserService;
+use App\service\usersRoles\UsersRolesMapper;
 
 require_once 'src/controller/MainController.php';
 require_once 'src/controller/SecurityController.php';
 require_once 'src/controller/ReservationController.php';
 require_once 'src/service/security/UserService.php';
 require_once 'src/service/reservation/ReservationService.php';
+require_once 'src/service/usersRoles/UsersRolesMapper.php';
 require_once 'src/repository/UserRepository.php';
 require_once 'src/repository/ReservationRepository.php';
+require_once 'src/repository/UsersRolesRepository.php';
 
 $host = 'wdpai-bowling-club-db-1';
 $port = '5433';
@@ -31,10 +35,12 @@ class DI
     public ReservationRepository $reservationRepository;
     public ReservationService $reservationService;
     public ReservationController $reservationController;
+    public UsersRolesRepository $usersRolesRepository;
     public UserRepository $userRepository;
     public UserService $userService;
     public SecurityController $securityController;
     public MainController $mainController;
+    private UsersRolesMapper $usersRolesMapper;
 
     public function __construct()
     {
@@ -49,7 +55,11 @@ class DI
         } catch (PDOException $e) {
             die("Error while connecting the DB: " . $e->getMessage());
         }
-        $this->userRepository = new UserRepository(self::$PDO);
+
+        $this->usersRolesRepository = new UsersRolesRepository(self::$PDO);
+        $this->usersRolesMapper = new UsersRolesMapper();
+
+        $this->userRepository = new UserRepository(self::$PDO, $this->usersRolesRepository, $this->usersRolesMapper);
         $this->userService = new UserService($this->userRepository);
         $this->securityController = new SecurityController($this->userService);
 

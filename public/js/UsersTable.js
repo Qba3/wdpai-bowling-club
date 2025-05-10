@@ -14,12 +14,13 @@ async function fetchUsers() {
         const loginCell = document.createElement('td');
         loginCell.textContent = user.login;
 
-        const roleCell = document.createElement('td');
-        roleCell.textContent = user.role;
+        const rolesCell = document.createElement('td');
+        rolesCell.textContent = user.roles;
 
         const deleteCell = document.createElement('td');
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "DELETE";
+        deleteButton.classList.add("action-btn")
 
         deleteButton.addEventListener('click', async () => {
             await fetch('/src/service/security/DeleteUser.php', {
@@ -27,13 +28,14 @@ async function fetchUsers() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ login: user.login })
+                body: JSON.stringify({login: user.login})
             });
             tbody.removeChild(row);
         });
 
         const reservationsLink = document.createElement('a');
         reservationsLink.textContent = "RESERVATIONS";
+        reservationsLink.classList.add("action-btn")
 
         const userId = user.id;
         reservationsLink.href = `/userReservations?userId=${userId}`;
@@ -43,7 +45,7 @@ async function fetchUsers() {
 
         row.appendChild(emailCell);
         row.appendChild(loginCell);
-        row.appendChild(roleCell);
+        row.appendChild(rolesCell);
         row.appendChild(deleteCell);
 
         tbody.appendChild(row);

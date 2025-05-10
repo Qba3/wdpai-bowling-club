@@ -6,8 +6,8 @@ class User
     private string $lastname;
     private string $login;
     private string $email;
-    private string $password;
-    private string $role;
+    private string $password; //hashed
+
 
     public function __construct(
         string $firstname,
@@ -15,7 +15,6 @@ class User
         string $login,
         string $email,
         string $password,
-        string $role,
     )
     {
         $this->firstname = $firstname;
@@ -23,7 +22,6 @@ class User
         $this->login = $login;
         $this->email = $email;
         $this->password = $password;
-        $this->role = $role;
     }
 
     /**
@@ -45,22 +43,6 @@ class User
     /**
      * @return string
      */
-    public function getRole(): string
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param string $role
-     */
-    public function setRole(string $role): void
-    {
-        $this->role = $role;
-    }
-
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -71,7 +53,7 @@ class User
      */
     public function setPassword(string $password): void
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**

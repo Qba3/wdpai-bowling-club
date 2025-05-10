@@ -29,15 +29,16 @@ class SecurityController extends Controller
         }
 
         session_start();
-        $_SESSION['user_id'] = $this->userService->getUserIdByLogin($user->getLogin());
+        $userId = $this->userService->getUserIdByLogin($user->getLogin());
+        $_SESSION['user_id'] = $userId;
         $_SESSION['username'] = $user->getFirstname();
-        $_SESSION['role'] = $user->getRole();
+        $_SESSION['roles'] = $this->userService->getUserRolesById($userId);
 
 
         $this->render('main');
     }
 
-    public function addUser(string $firstname, string $lastname, string $login, string $email, string $password, string $role): void
+    public function addUser(string $firstname, string $lastname, string $login, string $email, string $password, array $roles): void
     {
         $user = $this->userService->getUserByLogin($login);
         if ($user !== null) {
@@ -51,8 +52,8 @@ class SecurityController extends Controller
             return;
         }
 
-        $user = new User($firstname, $lastname, $login, $email, $password, $role);
-        if ($this->userService->addUser($user)) {
+        $user = new User($firstname, $lastname, $login, $email, $password);
+        if ($this->userService->addUser($user, $roles)) {
             $this->render('login', ["message" => 'User created successfully']);
             return;
         }

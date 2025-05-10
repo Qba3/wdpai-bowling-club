@@ -18,7 +18,7 @@ class UserService
 
     public function getUsers(): array
     {
-        return $this->userRepository->getAll();
+        return $this->userRepository->fetchAll();
     }
 
     public function getUserByLogin(string $login): ?User
@@ -33,16 +33,21 @@ class UserService
 
     public function verifyUser(User $user, string $password): bool
     {
-        return $user->getPassword() === $password;
+        return password_verify($password, $user->getPassword());
     }
 
-    public function addUser(User $user): bool
+    public function addUser(User $user, array $roles): bool
     {
-        return $this->userRepository->createUser($user);
+        return $this->userRepository->createUser($user, $roles);
     }
 
     public function getUserIdByLogin(string $login): ?int
     {
         return $this->userRepository->getUserIdByLogin($login);
+    }
+
+    public function getUserRolesById(int $userId): array
+    {
+        return $this->userRepository->getUserRoles($userId);
     }
 }

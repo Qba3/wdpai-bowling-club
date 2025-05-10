@@ -16,29 +16,16 @@ class ReservationRepository
         $this->pdo = $pdo;
     }
 
-    public function findReservationsByUserId(int $userId): array
+    public function fetchReservationsByUserId(int $userId): array
     {
-        $stmt = $this->pdo->prepare("SELECT user_id, day, hour FROM reservations WHERE user_id = :user_id");
+        $stmt = $this->pdo->prepare("SELECT id, day, hour FROM reservations WHERE user_id = :user_id");
         $stmt->bindParam(':user_id', $userId);
         $stmt->execute();
 
-        $reservationsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $reservations = [];
-        if ($reservationsData) {
-            foreach ($reservationsData as $data) {
-                $reservations[] = new Reservation(
-                    $data['user_id'],
-                    $data['day'],
-                    $data['hour']
-                );
-            }
-        }
-
-        return $reservations;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAll(): array
+    public function getAllReservations(): array
     {
         $stmt = $this->pdo->prepare("SELECT user_id, day, hour FROM reservations ");
         $stmt->execute();
@@ -66,6 +53,14 @@ class ReservationRepository
         $stmt->bindParam(':user_id', $userId);
         $stmt->bindParam(':day', $day);
         $stmt->bindParam(':hour', $hour);
+
+        return $stmt->execute();
+    }
+
+    public function deleteReservationById(int $id): bool
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM reservations WHERE id = :id');
+        $stmt->bindParam(':id', $id);
 
         return $stmt->execute();
     }
