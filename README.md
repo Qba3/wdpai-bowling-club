@@ -1,6 +1,6 @@
 # Bowling Club – System Rezerwacji Kręgielni
 
-**Bowling Club** to aplikacja webowa umożliwiająca użytkownikom rejestrację, logowanie oraz dokonywanie rezerwacji torów do gry w kręgle. Projekt został zbudowany w architekturze MVC i zorganizowany zgodnie z zasadami SOLID, KISS i DRY, z pełnym wsparciem dla rozwoju obiektowego i skalowalności. Zastosowano również wzorzec Singleton do zarządzania kluczowymi komponentami, takimi jak połączenia z bazą danych.
+**Bowling Club** to aplikacja webowa umożliwiająca użytkownikom rejestrację, logowanie oraz dokonywanie rezerwacji torów do gry w kręgle. Projekt został zbudowany w architekturze MVC i zorganizowany zgodnie z zasadami SOLID i KISS, z pełnym wsparciem dla rozwoju obiektowego i skalowalności. Zastosowano również wzorzec Singleton do zarządzania kluczowymi komponentami, takimi jak połączenia z bazą danych.
 
 ## 🎨 Interfejs użytkownika
 
