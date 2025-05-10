@@ -89,6 +89,14 @@ Zastosowane zasady i wzorce:
 - **Baza danych**: PostgreSQL + Phinx Migrations
 - **Serwer aplikacji**: Nginx + PHP-FPM
 
+Dodatkowo stawiany jest Adminer do wygodnej obsługi bazy danych na porcie 8080.
+Poświadczenia do Adminera:
+- Rodzaj bazy - PostgreSQL
+- Serwer - db
+- Login - admin
+- Hasło - admin
+- Baza danych - bowling_club
+
 ![ERD DB](./wiki/erd.jpg)
 
 ---
