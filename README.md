@@ -91,6 +91,4 @@ Zastosowane zasady i wzorce:
 
 ![ERD DB](./wiki/erd.jpg)
 
-## 🚀 Możliwości rozwoju
-
 ---
