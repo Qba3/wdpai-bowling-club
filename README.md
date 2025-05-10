@@ -80,8 +80,9 @@ Zastosowane zasady i wzorce:
 
 - **SOLID** – każda klasa spełnia zasadę pojedynczej odpowiedzialności, a komponenty systemu są luźno powiązane.
 - **KISS (Keep It Simple, Stupid)** – prosta, intuicyjna logika aplikacji.
-- **Singleton** – zastosowany do kontrolowania instancji połączenia z bazą danych, zapewniając spójność i kontrolę zasobów.
-
+- **Singleton** – zastosowany do kontrolowania instancji klas, zapewniając spójność i kontrolę zasobów.
+- **Dependency Injection** – wsztrzykiwanie zależności do klas w celu utrzymania podejść Singleton oraz MVC.
+- 
 ## 🛠 Technologie
 
 - **Backend**: PHP 
